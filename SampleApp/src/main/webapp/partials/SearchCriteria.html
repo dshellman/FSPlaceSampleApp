@@ -1,0 +1,36 @@
+<div>
+	<div>Search Criteria</div>
+	<div>
+		<div class="label">Place Name</div>
+		<div><input ng-model="placeName" /></div>
+	</div>
+	<div>
+		<div class="label">Date</div>
+		<div><input ng-model="placeDate" /></div>
+	</div>
+	<div>
+		<div class="label">Jurisdiction</div>
+		<div><input ng-model="placeJurisdiction" /></div>
+	</div>
+	<div>
+		<div class="label">Location</div>
+		<div><input ng-model="placeLocation" /></div>
+	</div>
+	<div>
+		<div class="label">Type</div>
+		<div>
+			<select ng-model="selectedType" ng-options="type.label for type in placeTypes track by type.id">
+			</select>
+		</div>
+	</div>
+	<div>
+		<div class="label">Type Group</div>
+		<div>
+			<select ng-model="selectedTypeGroup" ng-options="group.label for group in placeTypeGroups track by group.id">
+			</select>
+		</div>
+	</div>
+	<div>
+		<button ng-click="searchPlaces( placeName, placeDate, placeJurisdiction, placeLocation, selectedType, selectedTypeGroup )">Search</button>
+	</div>
+</div>

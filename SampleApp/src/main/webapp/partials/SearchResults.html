@@ -1,0 +1,19 @@
+<div>
+Search Results
+	<table class="resultsTable">
+		<tr class="resultsRow">
+			<th class="titleCell">Id</th>
+			<th class="titleCell">Name</th>
+			<th class="titleCell">Type</th>
+			<th class="titleCell">Dates</th>
+			<th class="titleCell">Location</th>
+		</tr>
+		<tr ng-repeat="place in searchResults" class="resultsRow">
+			<td class="resultsCell">{{ place.id }}</td>
+			<td class="resultsCell">{{ place.name }}</td>
+			<td class="resultsCell">{{ place.type }}</td>
+			<td class="resultsCell">{{ place.date }}</td>
+			<td class="resultsCell">{{ place.latitude }}, {{ place.longitude }}</td>
+		</tr>
+	</table>
+</div>

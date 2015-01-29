@@ -1,0 +1,40 @@
+
+.label {
+	padding: 2px 5px 2px 3px
+}
+
+.layoutTable {
+	vertical-align: top;
+	width: 100%
+}
+
+.layoutRow {
+}
+
+.layoutCell {
+	vertical-align: top;
+}
+
+.resultsTable {
+	border: 1px solid black;
+	border-collapse:  collapse;
+	width: 100%;
+}
+
+.resultsRow {
+	border: 1px solid black;
+}
+
+.resultsCell {
+	border: 1px solid black;
+	vertical-align: top;
+	padding: 5px;
+	font-size: 1em;
+}
+
+.titleCell {
+	border: 1px solid black;
+	font-size: 1.1em;
+	padding: 5px;
+	text-align: left;
+}
