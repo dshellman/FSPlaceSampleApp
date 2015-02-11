@@ -8,27 +8,42 @@
 	<link rel="stylesheet" type="text/css" href="css/places.css" />
 </head>
 
-<body>
-	<div style="clear:both;text-align:center;">
-		<b>Place Research</b>
-	</div>
+<body ng-controller="searchPlacesCtrl">
+    <div class="header">
+    	<h1 class="pageTitle">
+	    	<b>Place Research</b>
+        </h1>
+    </div>
+    <div style="clear:both;">
+        <table class="layoutTable">
+            <tr class="layoutRow">
+                <td colspan="1" class="layoutCell">
+                    <div class="searchCriteria"" ng-include="criteriaURL" style="float:left"></div>
+                </td>
+                <td colspan="2" class="layoutCell">
+                    <div class="searchResults" ng-include="resultsURL" style="float:left"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="map">
+        <ui-gmap-google-map center="map.center"
+                zoom="map.zoom"
+                options="map.options"
+                class="angular-google-map-container">
+            <ui-gmap-markers models='searchResults' fit="true" coords="'self'" options="'title:name'" idkey="'id'"></ui-gmap-markers>
+        </ui-gmap-google-map>
+    </div>
 
-	<table class="layoutTable">
-		<tr class="layoutRow">
-			<td colspan="1" class="layoutCell">
-				<div ng-controller="searchPlacesCtrl" ng-include="criteriaURL" style="float:left"></div>
-			</td>
-			<td colspan="2" class="layoutCell">
-				<div ng-controller="searchResultsCtrl" ng-include="resultsURL" style="float:left"></div>
-			</td>
-		</tr>
-	</table>
+    <script src="js/lib/angular.js"></script>
+    <script src="js/lib/angular-route.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services/place-api.js"></script>
+    <script src="js/controllers/controllers.js"></script>
+    <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="js/lib/lodash.js"></script>
+    <script src="js/lib/angular-google-maps.js"></script>
 
-	<script src="js/lib/angular.js"></script>
-	<script src="js/lib/angular-route.js"></script>
-	<script src="js/app.js"></script>
-	<script src="js/services/place-api.js"></script>
-	<script src="js/controllers/controllers.js"></script>
 </body>
 
 </html>

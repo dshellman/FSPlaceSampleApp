@@ -1,4 +1,36 @@
 
+.angular-google-map-container {
+    height: 350px;
+    margin-left: 14%;
+    min-width: 87%;
+}
+
+body {
+    background-color: #ffffff;
+    color: #333333;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 0%;
+    position: relative;
+}
+
+table, th , td  {
+    border: hidden;
+    border-collapse: collapse;
+    /*padding: 5px;*/
+}
+
+table, tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+table, tr:nth-child(even) {
+    background-color: lightgray;
+}
+
 .label {
 	padding: 2px 5px 2px 3px
 }
@@ -13,6 +45,15 @@
 
 .layoutCell {
 	vertical-align: top;
+}
+
+.lds-logo {
+    height: 52px;
+}
+
+.pageTitle {
+    clear:both;
+    text-align:center;
 }
 
 .resultsTable {
@@ -30,6 +71,45 @@
 	vertical-align: top;
 	padding: 5px;
 	font-size: 1em;
+}
+
+.requestBox {
+    width: 95%;
+    height: 100px;
+}
+
+.service_notice {
+    clear:both;
+    text-align:right;
+}
+
+.searchCriteria {
+    border: medium solid tan;
+    max-width: 10%;
+    padding: 5px;
+    position: fixed;
+    z-index: 10;
+}
+
+.searchInput {
+    width: 95%;
+}
+
+.searchResults {
+    border: medium solid lightgray;
+    height: 250px;
+    margin-left: 14%;
+    min-width: 86%;
+    overflow: auto;
+    padding: 5px;
+    position: relative;
+    z-index: 5;
+}
+
+.tableLabel {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
 }
 
 .titleCell {

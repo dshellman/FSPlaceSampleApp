@@ -3,6 +3,7 @@ var		placeAPI = angular.module( 'PlaceAPIServices', [] );
 placeAPI.service( 'placeAPIService', [ '$http', '$log', function( $http, $log ) {
 	var		urls = {};
 	var		lastResults;
+    var     lastRequest = null;
 	var		allTypes = null;
 	var		allTypeGroups = null;
 	var		searchCallback;
@@ -72,6 +73,7 @@ placeAPI.service( 'placeAPIService', [ '$http', '$log', function( $http, $log ) 
 			row.latitude = value.content.gedcomx.places[ 0 ].latitude;
 			row.longitude = value.content.gedcomx.places[ 0 ].longitude;
 			row.date = parsedDate;
+            row.relScore = value.score;
 			newData.push( row );
 		} );
 
@@ -129,9 +131,12 @@ placeAPI.service( 'placeAPIService', [ '$http', '$log', function( $http, $log ) 
 		if ( params.group ) {
 			query += '%2BtypeGroupId:' + params.group + ' ';
 		}
-		if ( params.location ) {
-			query += 'latitude:' + ' ';
+		if ( params.latitude ) {
+			query += ' latitude:' + params.latitude + ' ';
 		}
+        if ( params.longitude ) {
+            query += ' longitude:' + params.longitude + ' ';
+        }
 		if ( params.jurisdiction ) {
 			query += '%2BparentId:' + params.jurisdiction + ' ';
 		}
@@ -143,6 +148,7 @@ placeAPI.service( 'placeAPIService', [ '$http', '$log', function( $http, $log ) 
 				'Authorization': 'Bearer ' + me.urls.accessToken.token
 			};
 		req.url = me.urls.placeEndPoints.PLACE_SEARCH + query;
+        me.lastRequest = req.url;
 
 		$log.info( "Search URL: " + req.url );
 		$http.get( req.url, req ).success( function( data ) {
@@ -162,6 +168,11 @@ placeAPI.service( 'placeAPIService', [ '$http', '$log', function( $http, $log ) 
 	function _getLastResults() {
 		return me.lastResults;
 	}
+
+    //GetLastRequest:  Gets the last search request
+    function _getLastRequest() {
+        return me.lastRequest;
+    }
 
 	//RegisterSearchCallback:  Registers a function to be called when place search is performed
 	function _registerSearchCallback( callback ) {
@@ -196,7 +207,7 @@ placeAPI.service( 'placeAPIService', [ '$http', '$log', function( $http, $log ) 
 			headers: {
 				'Authorization': 'Bearer ' + me.urls.accessToken.token
 			}
-		}
+		};
 
 		$log.info( "Place Types URL: " + req.url );
 		$http.get( req.url, req ).success( function( data ) {
@@ -219,7 +230,7 @@ placeAPI.service( 'placeAPIService', [ '$http', '$log', function( $http, $log ) 
 			headers: {
 				'Authorization': 'Bearer ' + me.urls.accessToken.token
 			}
-		}
+		};
 
 		$log.info( "Place Type Groups URL: " + req.url );
 		$http.get( req.url, req ).success( function( data ) {
@@ -243,6 +254,7 @@ placeAPI.service( 'placeAPIService', [ '$http', '$log', function( $http, $log ) 
 	//Make public functions public
 	this.search = _search;
 	this.getLastResults = _getLastResults;
+    this.getLastRequest = _getLastRequest;
 	this.registerSearchCallback = _registerSearchCallback;
 	this.registerAllTypesCallback = _registerAllTypesCallback;
 	this.registerAllTypeGroupsCallback = _registerAllTypeGroupsCallback;

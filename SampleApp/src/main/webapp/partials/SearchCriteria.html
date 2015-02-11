@@ -1,36 +1,43 @@
 <div>
-	<div>Search Criteria</div>
+	<div class="tableLabel">Search Criteria</div>
 	<div>
 		<div class="label">Place Name</div>
-		<div><input ng-model="placeName" /></div>
+		<div><input type="text" ng-model="placeName" ng-blur="searchPlaces()" class="searchInput" /></div>
 	</div>
 	<div>
 		<div class="label">Date</div>
-		<div><input ng-model="placeDate" /></div>
+		<div><input type="text" ng-model="placeDate" ng-blur="searchPlaces()" class="searchInput" /></div>
 	</div>
 	<div>
 		<div class="label">Jurisdiction</div>
-		<div><input ng-model="placeJurisdiction" /></div>
+		<div><input type="text" ng-model="placeJurisdiction" ng-blur="searchPlaces()" class="searchInput" /></div>
 	</div>
 	<div>
 		<div class="label">Location</div>
-		<div><input ng-model="placeLocation" /></div>
+		<div>Lat:<input type="text" ng-model="placeLat" ng-blur="searchPlaces()" class="searchInput" />
+             Long:<input type="text" ng-model="placeLong" ng-blur="searchPlaces()" class="searchInput" /></div>
 	</div>
 	<div>
 		<div class="label">Type</div>
 		<div>
-			<select ng-model="selectedType" ng-options="type.label for type in placeTypes track by type.id">
+			<select ng-model="selectedType" ng-change="searchPlaces()" ng-options="type.label for type in placeTypes track by type.id" class="searchInput" >
+                <option value=""></option>
 			</select>
 		</div>
 	</div>
 	<div>
 		<div class="label">Type Group</div>
 		<div>
-			<select ng-model="selectedTypeGroup" ng-options="group.label for group in placeTypeGroups track by group.id">
-			</select>
+			<select ng-model="selectedTypeGroup" ng-change="searchPlaces()" ng-options="group.label for group in placeTypeGroups track by group.id" class="searchInput" >
+                <option value=""></option>
+            </select>
 		</div>
 	</div>
-	<div>
-		<button ng-click="searchPlaces( placeName, placeDate, placeJurisdiction, placeLocation, selectedType, selectedTypeGroup )">Search</button>
-	</div>
+    </br>
+    <div>
+        <div><input type="checkbox" ng-model="showRequest"/>Show Request</div>
+    </div>
+    <div>
+        <div ng-show="showRequest"><textarea ng-model="searchRequest" ng-readonly="true" class="requestBox"/></div>
+    </div>
 </div>
